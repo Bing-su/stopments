@@ -27,7 +27,7 @@ build-backend = "pdm.backend"
 [tool.rye]
 managed = true
 universal = true
-dev-dependencies = ["ruff", "pre-commit-uv", "uvicorn"]
+dev-dependencies = ["ruff", "pre-commit-uv", "uvicorn", "httpx"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
