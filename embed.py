@@ -31,16 +31,14 @@ async def main():
 
     responses = await asyncio.gather(*(get_url(url) for url in urls))
 
-    mapping = {
-        "src/stopments/embed/web_components.py": encode(responses[0].content),
-        "src/stopments/embed/styles.py": encode(responses[1].content),
-        "src/stopments/embed/favicon.py": encode(responses[2].content),
-    }
+    static = Path(__file__).parent.joinpath("src/stopments/static")
 
-    for path, content in mapping.items():
-        p = Path(__file__).parent.joinpath(path)
-        with p.open("w", encoding="utf-8") as file:
-            file.write(f'content = """{content}"""\n')
+    async with asyncio.TaskGroup() as tg:
+        for url, resp in zip(urls, responses, strict=True):
+            filename = url.split("/")[-1]
+            file = static.joinpath(filename)
+            task = asyncio.to_thread(file.write_bytes, resp.content)
+            tg.create_task(task)
 
 
 if __name__ == "__main__":

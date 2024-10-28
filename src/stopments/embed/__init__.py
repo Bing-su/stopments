@@ -1,17 +1,8 @@
-import base64 as _base64
-import zlib as _zlib
+from importlib.resources import files as _files
 
-from .favicon import content as _favicon
-from .styles import content as _styles
-from .web_components import content as _web_components
+_MODULE = "stopments.static"
 
-
-def _decode(content: str) -> bytes:
-    z = _base64.b85decode(content)
-    return _zlib.decompress(z)
-
-
-favicon = _decode(_favicon)
+favicon = _files(_MODULE).joinpath("favicon.ico").read_bytes()
 """
 Favicon content.
 
@@ -32,7 +23,8 @@ async def favicon_ico():
 ```
 """
 
-css_content = _decode(_styles)
+
+css_content = _files(_MODULE).joinpath("styles.min.css").read_bytes()
 """
 CSS content from https://unpkg.com/@stoplight/elements/styles.min.css
 
@@ -53,7 +45,7 @@ async def styles_css():
 ```
 """
 
-js_content = _decode(_web_components)
+js_content = _files(_MODULE).joinpath("web-components.min.js").read_bytes()
 """
 JavaScript content from https://unpkg.com/@stoplight/elements/web-components.min.js
 
@@ -76,4 +68,6 @@ async def web_components_js():
 ```
 """
 
-del _base64, _zlib, _favicon, _styles, _web_components
+del _files, _MODULE
+
+__all__ = ["favicon", "css_content", "js_content"]
