@@ -36,7 +36,7 @@ def get_stoplight_elements_html(  # noqa: PLR0913 Too many arguments in function
     try_it_credential_policy: TryItCredentialPolicyOptions = TryItCredentialPolicyOptions.OMIT,
     layout: LayoutOptions = LayoutOptions.SIDEBAR,
     logo: str = "",
-    router: RouterOptions = RouterOptions.HISTORY,
+    router: RouterOptions = RouterOptions.HASH,
 ) -> str:
     """
     Generate an HTML document that embeds the Stoplight Elements API Explorer.
@@ -62,8 +62,8 @@ def get_stoplight_elements_html(  # noqa: PLR0913 Too many arguments in function
           - `stacked` - Everything in a single column, making integrations with existing websites that have their own sidebar or other columns already.
         logo: URL to an image that displays as a small square logo next to the title, above the table of contents.
         router:  Determines how navigation should work:
-          - `history` - (default) uses the HTML5 history API to keep the UI in sync with the URL.
-          - `hash` - uses the hash portion of the URL to keep the UI in sync with the URL.
+          - `history` - uses the HTML5 history API to keep the UI in sync with the URL.
+          - `hash` - (default) uses the hash portion of the URL to keep the UI in sync with the URL.
           - `memory` - keeps the history of your "URL" in memory (doesn't read or write to the address bar).
           - `static` - renders using the StaticRouter which can help render pages on the server.
 
