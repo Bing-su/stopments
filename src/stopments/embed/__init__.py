@@ -26,12 +26,9 @@ from stopments.embed import favicon
 
 app = FastAPI()
 
-@app.get("/favicon.ico")
+@app.get("/favicon.ico", include_in_schema=False)
 async def favicon_ico():
-    return HTMLResponse(
-        content=favicon,
-        headers={"Content-Type": "image/x-icon"},
-    )
+    return HTMLResponse(content=favicon, media_type="image/x-icon")
 ```
 """
 
@@ -50,12 +47,9 @@ from stopments.embed import css_content
 
 app = FastAPI()
 
-@app.get("/static/styles.min.css")
+@app.get("/static/styles.min.css", include_in_schema=False)
 async def styles_css():
-    return HTMLResponse(
-        content=css_content,
-        headers={"Content-Type": "text/css; charset=utf-8"},
-    )
+    return HTMLResponse(content=css_content, media_type="text/css; charset=utf-8")
 ```
 """
 
@@ -74,11 +68,12 @@ from stopments.embed import js_content
 
 app = FastAPI()
 
-@app.get("/static/web-components.min.js")
+@app.get("/static/web-components.min.js", include_in_schema=False)
 async def web_components_js():
     return HTMLResponse(
-        content=js_content,
-        headers={"Content-Type": "application/javascript; charset=utf-8"},
+        content=js_content, media_type="application/javascript; charset=utf-8"
     )
 ```
 """
+
+del _base64, _zlib, _favicon, _styles, _web_components
