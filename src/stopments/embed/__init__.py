@@ -2,9 +2,9 @@ from importlib.resources import files as _files
 
 _MODULE = "stopments.static"
 
-favicon = _files(_MODULE).joinpath("favicon.ico").read_bytes()
+favicon_content = _files(_MODULE).joinpath("favicon.ico").read_bytes()
 """
-Favicon content.
+Favicon content from https://docs.stoplight.io/favicons/favicon.ico
 
 Content-Type: image/x-icon
 
@@ -13,13 +13,13 @@ Example:
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
-from stopments.embed import favicon
+from stopments.embed import favicon_content
 
 app = FastAPI()
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon_ico():
-    return HTMLResponse(content=favicon, media_type="image/x-icon")
+    return HTMLResponse(content=favicon_content, media_type="image/x-icon")
 ```
 """
 
@@ -70,4 +70,4 @@ async def web_components_js():
 
 del _files, _MODULE
 
-__all__ = ["favicon", "css_content", "js_content"]
+__all__ = ["favicon_content", "css_content", "js_content"]

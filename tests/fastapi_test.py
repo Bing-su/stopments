@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.testclient import TestClient
 
 from stopments import get_stoplight_elements_html
-from stopments.embed import css_content, favicon, js_content
+from stopments.embed import css_content, favicon_content, js_content
 
 
 def fastapi_app():
@@ -47,7 +47,7 @@ def fastapi_app_embed():
     @app.get("/static/favicon.ico", include_in_schema=False)
     async def favicon_ico():
         return HTMLResponse(
-            content=favicon,
+            content=favicon_content,
             media_type="image/x-icon",
         )
 
