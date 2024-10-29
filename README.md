@@ -22,6 +22,7 @@ pip install stopments
 
 ```python
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from stopments import get_stoplight_elements_html
@@ -41,6 +42,7 @@ or you can use embedded static files
 
 ```python
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from stopments import get_stoplight_elements_html
