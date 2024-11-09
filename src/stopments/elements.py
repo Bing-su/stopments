@@ -20,7 +20,7 @@ class RouterOptions(Enum):
     STATIC = "static"
 
 
-def get_stoplight_elements_html(  # noqa: PLR0913 Too many arguments in function definition
+def get_stoplight_elements_html(  # noqa: PLR0913 many arguments in function definition
     *,
     openapi_url: str,
     title: str,
