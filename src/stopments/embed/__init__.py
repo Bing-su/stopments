@@ -8,11 +8,12 @@ Favicon content from https://docs.stoplight.io/favicons/favicon.ico
 
 Content-Type: image/x-icon
 
-Example:
+Example
+-------
+
 ```python
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-
 from stopments.embed import favicon_content
 
 app = FastAPI()
@@ -30,11 +31,12 @@ CSS content from https://unpkg.com/@stoplight/elements/styles.min.css
 
 Content-Type: text/css; charset=utf-8
 
-Example:
+Example
+-------
+
 ```python
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-
 from stopments.embed import css_content
 
 app = FastAPI()
@@ -51,11 +53,12 @@ JavaScript content from https://unpkg.com/@stoplight/elements/web-components.min
 
 Content-Type: application/javascript; charset=utf-8
 
-Example:
+Example
+-------
+
 ```python
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-
 from stopments.embed import js_content
 
 app = FastAPI()
