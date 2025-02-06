@@ -17,17 +17,16 @@ classifiers = [
 [project.urls]
 Repository = "https://github.com/Bing-su/stopments"
 
-[project.optional-dependencies]
+[dependency-groups]
+dev = ["ruff", "pre-commit-uv", "uvicorn", "httpx"]
 test = ["pytest", "pytest-asyncio", "pytest-cov", "pytest-sugar", "fastapi"]
+
+[tool.uv]
+default-groups = ["dev", "test"]
 
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
-
-[tool.rye]
-managed = true
-universal = true
-dev-dependencies = ["ruff", "pre-commit-uv", "uvicorn", "httpx"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
