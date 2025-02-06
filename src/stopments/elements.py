@@ -79,22 +79,22 @@ def get_stoplight_elements_html(  # noqa: PLR0913 many arguments in function def
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{title}</title>
 
-    {f'<link rel="shortcut icon" href="{stoplight_elements_favicon_url}">' if stoplight_elements_favicon_url else ''}
+    {f'<link rel="shortcut icon" href="{stoplight_elements_favicon_url}">' if stoplight_elements_favicon_url else ""}
     <script src="{stoplight_elements_js_url}"></script>
     <link rel="stylesheet" href="{stoplight_elements_css_url}">
   </head>
 <body>
   <elements-api
-    {f'apiDescriptionUrl="{openapi_url}"' if openapi_url else ''}
-    {f'apiDescriptionDocument="{api_description_document}"' if api_description_document else ''}
-    {f'basePath="{base_path}"' if base_path else ''}
-    {'hideInternal="true"' if hide_internal else ''}
-    {'hideTryIt="true"' if hide_try_it else ''}
-    {'hideExport="true"' if hide_export else ''}
-    {f'tryItCorsProxy="{try_it_cors_proxy}"' if try_it_cors_proxy else ''}
+    {f'apiDescriptionUrl="{openapi_url}"' if openapi_url else ""}
+    {f'apiDescriptionDocument="{api_description_document}"' if api_description_document else ""}
+    {f'basePath="{base_path}"' if base_path else ""}
+    {'hideInternal="true"' if hide_internal else ""}
+    {'hideTryIt="true"' if hide_try_it else ""}
+    {'hideExport="true"' if hide_export else ""}
+    {f'tryItCorsProxy="{try_it_cors_proxy}"' if try_it_cors_proxy else ""}
     tryItCredentialPolicy="{try_it_credential_policy.value}"
     layout="{layout.value}"
-    {f'logo="{logo}"' if logo else ''}
+    {f'logo="{logo}"' if logo else ""}
     router="{router.value}"
   />
 </body>

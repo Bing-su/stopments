@@ -73,4 +73,4 @@ async def web_components_js():
 
 del _files, _MODULE
 
-__all__ = ["favicon_content", "css_content", "js_content"]
+__all__ = ["css_content", "favicon_content", "js_content"]

@@ -7,9 +7,9 @@ from .elements import (
 )
 
 __all__ = [
-    "__version__",
     "LayoutOptions",
     "RouterOptions",
     "TryItCredentialPolicyOptions",
+    "__version__",
     "get_stoplight_elements_html",
 ]
