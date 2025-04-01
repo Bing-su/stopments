@@ -6,7 +6,18 @@ from .elements import (
     get_stoplight_elements_html,
 )
 
+# Literal strings for file names
+WEB_COMPONENTS = "web-components.min.js"
+"web-components.min.js"
+STYLES = "styles.min.css"
+"styles.min.css"
+FAVICON = "favicon.ico"
+"favicon.ico"
+
 __all__ = [
+    "FAVICON",
+    "STYLES",
+    "WEB_COMPONENTS",
     "LayoutOptions",
     "RouterOptions",
     "TryItCredentialPolicyOptions",

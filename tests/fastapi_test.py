@@ -108,6 +108,9 @@ def test_fastapi():
     response = client.get("/docs")
     assert response.status_code == 200
     assert "API Documentation" in response.text
+    assert "web-components.min.js" in response.text
+    assert "styles.min.css" in response.text
+    assert "favicon.ico" in response.text
 
 
 @pytest.mark.parametrize(
