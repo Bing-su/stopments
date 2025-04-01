@@ -24,8 +24,8 @@ async def get_url(url: str) -> httpx.Response:
 
 async def main():
     urls = [
-        "https://unpkg.com/@stoplight/elements/web-components.min.js",
-        "https://unpkg.com/@stoplight/elements/styles.min.css",
+        "https://cdn.jsdelivr.net/npm/@stoplight/elements/web-components.min.js",
+        "https://cdn.jsdelivr.net/npm/@stoplight/elements/styles.min.css",
         "https://docs.stoplight.io/favicons/favicon.ico",
     ]
 

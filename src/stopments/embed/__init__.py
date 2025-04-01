@@ -27,7 +27,7 @@ async def favicon_ico():
 
 css_content = _files(_MODULE).joinpath("styles.min.css").read_bytes()
 """
-CSS content from https://unpkg.com/@stoplight/elements/styles.min.css
+CSS content from https://cdn.jsdelivr.net/npm/@stoplight/elements/styles.min.css
 
 Content-Type: text/css; charset=utf-8
 
@@ -49,7 +49,7 @@ async def styles_css():
 
 js_content = _files(_MODULE).joinpath("web-components.min.js").read_bytes()
 """
-JavaScript content from https://unpkg.com/@stoplight/elements/web-components.min.js
+JavaScript content from https://cdn.jsdelivr.net/npm/@stoplight/elements/web-components.min.js
 
 Content-Type: application/javascript; charset=utf-8
 

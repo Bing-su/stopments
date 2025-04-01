@@ -28,15 +28,15 @@ def test_get_stoplight_elements_html():
     [
         (
             {
-                "stoplight_elements_js_url": "https://unpkg.com/@stoplight/elements/web-components.min.js"
+                "stoplight_elements_js_url": "https://cdn.jsdelivr.net/npm/@stoplight/elements/web-components.min.js"
             },
-            '"https://unpkg.com/@stoplight/elements/web-components.min.js"',
+            '"https://cdn.jsdelivr.net/npm/@stoplight/elements/web-components.min.js"',
         ),
         (
             {
-                "stoplight_elements_css_url": "https://unpkg.com/@stoplight/elements/styles.min.css"
+                "stoplight_elements_css_url": "https://cdn.jsdelivr.net/npm/@stoplight/elements/styles.min.css"
             },
-            '"https://unpkg.com/@stoplight/elements/styles.min.css"',
+            '"https://cdn.jsdelivr.net/npm/@stoplight/elements/styles.min.css"',
         ),
         (
             {
