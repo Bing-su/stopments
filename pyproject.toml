@@ -1,6 +1,6 @@
 [project]
 name = "stopments"
-version = "25.2.6"
+version = "25.4.1"
 description = "Stoplight elements html"
 authors = [{ name = "Dowon", email = "ks2515@naver.com" }]
 dependencies = []
@@ -61,6 +61,7 @@ select = [
     "S",
     "SIM",
     "T20",
+    "TC",
     "TRY",
     "UP",
     "W",
