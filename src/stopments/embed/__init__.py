@@ -71,6 +71,36 @@ async def web_components_js():
 ```
 """
 
+scalar_api_reference_js_content = (
+    _files(_MODULE).joinpath("scalar-api-reference.js").read_bytes()
+)
+"""
+JavaScript content from https://cdn.jsdelivr.net/npm/@scalar/api-reference
+Content-Type: application/javascript; charset=utf-8
+
+Example
+-------
+
+```python
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+from stopments.embed import scalar_api_reference_js
+
+app = FastAPI()
+
+@app.get("/static/scalar-api-reference.js", include_in_schema=False)
+async def scalar_api_reference_js():
+    return HTMLResponse(
+        content=scalar_api_reference_js_content, media_type="application/javascript; charset=utf-8"
+    )
+```
+"""
+
 del _files, _MODULE
 
-__all__ = ["css_content", "favicon_content", "js_content"]
+__all__ = [
+    "css_content",
+    "favicon_content",
+    "js_content",
+    "scalar_api_reference_js_content",
+]
