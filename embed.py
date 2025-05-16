@@ -26,7 +26,6 @@ async def main():
     urls = [
         "https://cdn.jsdelivr.net/npm/@stoplight/elements/web-components.min.js",
         "https://cdn.jsdelivr.net/npm/@stoplight/elements/styles.min.css",
-        "https://docs.stoplight.io/favicons/favicon.ico",
     ]
 
     responses = await asyncio.gather(*(get_url(url) for url in urls))
