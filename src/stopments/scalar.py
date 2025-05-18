@@ -75,7 +75,7 @@ class Integration(Enum):
 
 
 def dump(key: str, data: object) -> str:
-    if not data:
+    if not isinstance(data, bool) and not data:
         return ""
     return f"{key}: {json.dumps(data)},"
 
@@ -86,7 +86,7 @@ def get_scalar_html(  # noqa: PLR0913
     title: str,
     scalar_js_url: str = "https://cdn.jsdelivr.net/npm/@scalar/api-reference",
     scalar_proxy_url: str = "",
-    scalar_favicon_url: str = "	https://docs.scalar.com/favicon.svg",
+    scalar_favicon_url: str = "https://docs.scalar.com/favicon.svg",
     slug: str | None = None,
     authentication: dict | None = None,
     base_server_url: str = "",
@@ -140,7 +140,8 @@ def get_scalar_html(  # noqa: PLR0913
     <script
       id="api-reference"
       data-url="{openapi_url}"
-      data-proxy-url="{scalar_proxy_url}">
+      {f'data-proxy-url="{scalar_proxy_url}"' if scalar_proxy_url else ""}
+    >
     </script>
 
     <script>
