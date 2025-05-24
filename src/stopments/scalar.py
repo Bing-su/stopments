@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from enum import Enum
 
+API_REFERENCE = "scalar-api-reference.js"
+
 
 class SearchHotKey(Enum):
     A = "a"
