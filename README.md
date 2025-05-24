@@ -9,6 +9,7 @@ It includes the following files:
 - `styles.min.css`
 - `web-components.min.js`
 - `favicon.ico`
+- `scalar-api-reference.js` (for [scalar](https://scalar.com/))
 
 The static files were collected on the same date as this package version.
 
