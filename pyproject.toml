@@ -1,6 +1,6 @@
 [project]
 name = "stopments"
-version = "25.5.19"
+version = "25.6.4"
 description = "Stoplight elements html"
 authors = [{ name = "Dowon", email = "ks2515@naver.com" }]
 dependencies = []
