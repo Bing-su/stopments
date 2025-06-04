@@ -1,8 +1,9 @@
 from importlib.resources import files as _files
+from typing import Final
 
 _MODULE = "stopments.static"
 
-favicon_content = _files(_MODULE).joinpath("favicon.ico").read_bytes()
+favicon_content: Final[bytes] = _files(_MODULE).joinpath("favicon.ico").read_bytes()
 """
 Favicon content from https://docs.stoplight.io/favicons/favicon.ico
 
@@ -25,7 +26,7 @@ async def favicon_ico():
 """
 
 
-css_content = _files(_MODULE).joinpath("styles.min.css").read_bytes()
+css_content: Final[bytes] = _files(_MODULE).joinpath("styles.min.css").read_bytes()
 """
 CSS content from https://cdn.jsdelivr.net/npm/@stoplight/elements/styles.min.css
 
@@ -47,7 +48,9 @@ async def styles_css():
 ```
 """
 
-js_content = _files(_MODULE).joinpath("web-components.min.js").read_bytes()
+js_content: Final[bytes] = (
+    _files(_MODULE).joinpath("web-components.min.js").read_bytes()
+)
 """
 JavaScript content from https://cdn.jsdelivr.net/npm/@stoplight/elements/web-components.min.js
 
@@ -71,7 +74,7 @@ async def web_components_js():
 ```
 """
 
-scalar_api_reference_js_content = (
+scalar_api_reference_js_content: Final[bytes] = (
     _files(_MODULE).joinpath("scalar-api-reference.js").read_bytes()
 )
 """
@@ -84,7 +87,7 @@ Example
 ```python
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from stopments.embed import scalar_api_reference_js
+from stopments.embed import scalar_api_reference_js_content
 
 app = FastAPI()
 
