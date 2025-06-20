@@ -26,3 +26,10 @@ jobs:
 
       - name: Test on ${{ matrix.os }} with python ${{ matrix.python-version }}
         run: uv run --python ${{ matrix.python-version }} --managed-python pytest
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Test Go
+        run: go test ./...
