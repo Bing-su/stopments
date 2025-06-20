@@ -8,7 +8,7 @@ import (
 //go:embed src/stopments/static
 var files embed.FS
 
-// Static is a io/fs directory containing static files for the Stopments application.
+// Static is an io/fs directory containing static files for the Stopments application.
 // It contains following files:
 //
 // - favicon.ico
