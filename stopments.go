@@ -1,4 +1,4 @@
-package stopment
+package stopments
 
 import (
 	"embed"
