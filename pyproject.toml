@@ -1,6 +1,6 @@
 [project]
 name = "stopments"
-version = "25.7.1"
+version = "25.8.6"
 description = "Stoplight elements html"
 authors = [{ name = "Dowon", email = "ks2515@naver.com" }]
 dependencies = []
@@ -31,8 +31,8 @@ test = [
 default-groups = ["dev", "test"]
 
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["uv_build"]
+build-backend = "uv_build"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
