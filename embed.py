@@ -1,3 +1,9 @@
+# /// script
+# dependencies = [
+#     "httpx",
+# ]
+# requires-python = ">=3.11"
+# ///
 import asyncio
 import base64
 import zlib
