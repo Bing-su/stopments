@@ -21,7 +21,7 @@ jobs:
         python-version: ["3.13"]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
 
       - name: Test on ${{ matrix.os }} with python ${{ matrix.python-version }}
