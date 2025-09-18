@@ -28,7 +28,7 @@ jobs:
 
       - run: ls dist
 
-      - uses: actions/attest-build-provenance@v2
+      - uses: actions/attest-build-provenance@v3
         with:
           subject-path: dist/*
 
