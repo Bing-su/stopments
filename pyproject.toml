@@ -2,33 +2,30 @@
 name = "stopments"
 version = "25.11.1"
 description = "Stoplight elements html"
-authors = [{ name = "Dowon", email = "ks2515@naver.com" }]
-dependencies = []
 readme = "README.md"
 requires-python = ">=3.9"
 license.text = "BSD-2-Clause"
-keywords = ["stoplight", "elements", "openapi", "swagger"]
+authors = [{ name = "Dowon", email = "ks2515@naver.com" }]
+keywords = ["elements", "openapi", "stoplight", "swagger"]
 classifiers = [
-    "Framework :: FastAPI",
-    "Programming Language :: Python :: 3",
-    "Topic :: Documentation",
+  "Framework :: FastAPI",
+  "Programming Language :: Python :: 3",
+  "Topic :: Documentation",
 ]
+dependencies = []
 
 [project.urls]
 Repository = "https://github.com/Bing-su/stopments"
 
 [dependency-groups]
-dev = ["ruff", "pre-commit-uv", "uvicorn", "httpx", "fastapi"]
+dev = ["fastapi", "httpx", "uvicorn"]
 test = [
-    "pytest",
-    "pytest-asyncio",
-    "pytest-cov",
-    "pytest-pretty",
-    "pytest-xdist",
+  "pytest",
+  "pytest-asyncio",
+  "pytest-cov",
+  "pytest-pretty",
+  "pytest-xdist",
 ]
-
-[tool.uv]
-default-groups = ["dev", "test"]
 
 [build-system]
 requires = ["uv_build"]
@@ -43,39 +40,40 @@ target-version = "py39"
 
 [tool.ruff.lint]
 select = [
-    "A",
-    "B",
-    "C4",
-    "C90",
-    "E",
-    "EM",
-    "F",
-    "FA",
-    "FBT",
-    "FURB",
-    "I001",
-    "ISC",
-    "N",
-    "PD",
-    "PERF",
-    "PIE",
-    "PL",
-    "PT",
-    "PTH",
-    "RET",
-    "RUF",
-    "S",
-    "SIM",
-    "T20",
-    "TC",
-    "TRY",
-    "UP",
-    "W",
+  "A",
+  "B",
+  "C4",
+  "C90",
+  "E",
+  "EM",
+  "F",
+  "FA",
+  "FBT",
+  "FURB",
+  "I001",
+  "ISC",
+  "N",
+  "PD",
+  "PERF",
+  "PIE",
+  "PL",
+  "PT",
+  "PTH",
+  "RET",
+  "RUF",
+  "S",
+  "SIM",
+  "T20",
+  "TC",
+  "TRY",
+  "UP",
+  "W",
 ]
 ignore = ["B905", "E501", "PLR2004"]
 unfixable = ["F401"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = [
-    "S101", # Use of `assert` detected
-]
+"tests/*" = ["S101"]
+
+[tool.uv]
+default-groups = ["dev", "test"]
