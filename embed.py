@@ -5,8 +5,6 @@
 # requires-python = ">=3.11"
 # ///
 import asyncio
-import base64
-import zlib
 from pathlib import Path
 
 import httpx
@@ -16,11 +14,6 @@ mapping = {
     "https://cdn.jsdelivr.net/npm/@stoplight/elements/styles.min.css": "styles.min.css",
     "https://cdn.jsdelivr.net/npm/@scalar/api-reference": "scalar-api-reference.js",
 }
-
-
-def encode(content: bytes) -> str:
-    z = zlib.compress(content, level=9)
-    return base64.b85encode(z).decode("utf-8")
 
 
 async def download(url: str, root: Path, filename: str) -> None:
