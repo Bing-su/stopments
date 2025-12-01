@@ -1,6 +1,6 @@
 [project]
 name = "stopments"
-version = "25.11.1"
+version = "25.12.1"
 description = "Stoplight elements html"
 readme = "README.md"
 requires-python = ">=3.9"
