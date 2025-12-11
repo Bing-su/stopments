@@ -42,12 +42,10 @@ class ThemeId(Enum):
     PURPLE = "purple"
     SOLARIZED = "solarized"
     BLUE_PLANET = "bluePlanet"
-    DEEP_SPACE = "deepSpace"
     SATURN = "saturn"
     KEPLER = "kepler"
-    ELYSIAJS = "elysiajs"
-    FASTIFY = "fastify"
     MARS = "mars"
+    DEEP_SPACE = "deepSpace"
     LASERWAVE = "laserwave"
     NONE = "none"
 
