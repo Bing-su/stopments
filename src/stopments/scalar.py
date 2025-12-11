@@ -83,7 +83,7 @@ def dump(key: str, data: object) -> str:
 def get_scalar_html(  # noqa: PLR0913
     *,
     openapi_url: str,
-    title: str,
+    title: str = "API Documentation",
     scalar_js_url: str = "https://cdn.jsdelivr.net/npm/@scalar/api-reference",
     scalar_proxy_url: str = "",
     scalar_favicon_url: str = "https://docs.scalar.com/favicon.svg",
@@ -127,6 +127,7 @@ def get_scalar_html(  # noqa: PLR0913
     """
     servers = servers or []
     authentication = authentication or {}
+    title = title or "API Documentation"
 
     return f"""<!doctype html>
 <html>

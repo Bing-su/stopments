@@ -23,7 +23,7 @@ class RouterOptions(Enum):
 def get_stoplight_elements_html(  # noqa: PLR0913 many arguments in function definition
     *,
     openapi_url: str,
-    title: str,
+    title: str = "API Documentation",
     stoplight_elements_js_url: str = "https://cdn.jsdelivr.net/npm/@stoplight/elements/web-components.min.js",
     stoplight_elements_css_url: str = "https://cdn.jsdelivr.net/npm/@stoplight/elements/styles.min.css",
     stoplight_elements_favicon_url: str = "https://docs.stoplight.io/favicons/favicon.ico",
@@ -71,6 +71,7 @@ def get_stoplight_elements_html(  # noqa: PLR0913 many arguments in function def
         The HTML document as a string.
     """
 
+    title = title or "API Documentation"
     return f"""
 <!doctype html>
 <html lang="en">
