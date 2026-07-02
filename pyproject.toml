@@ -4,7 +4,7 @@ version = "25.12.1"
 description = "Stoplight elements html"
 readme = "README.md"
 requires-python = ">=3.9"
-license.text = "BSD-2-Clause"
+license = "BSD-2-Clause"
 authors = [{ name = "Dowon", email = "ks2515@naver.com" }]
 keywords = ["elements", "openapi", "stoplight", "swagger"]
 classifiers = [
@@ -18,20 +18,14 @@ dependencies = []
 Repository = "https://github.com/Bing-su/stopments"
 
 [dependency-groups]
-dev = ["fastapi", "httpx", "uvicorn"]
-test = [
-  "pytest",
-  "pytest-asyncio",
-  "pytest-cov",
-  "pytest-pretty",
-  "pytest-xdist",
-]
+dev = ["fastapi", "httpx2", "uvicorn"]
+test = ["pytest", "pytest-asyncio", "pytest-cov", "pytest-pretty", "pytest-xdist"]
 
 [build-system]
 requires = ["uv_build"]
 build-backend = "uv_build"
 
-[tool.pytest.ini_options]
+[tool.pytest]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 

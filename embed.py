@@ -1,13 +1,13 @@
 # /// script
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # requires-python = ">=3.11"
 # ///
 import asyncio
 from pathlib import Path
 
-import httpx
+import httpx2
 
 mapping = {
     "https://cdn.jsdelivr.net/npm/@stoplight/elements/web-components.min.js": "web-components.min.js",
@@ -15,14 +15,15 @@ mapping = {
     "https://cdn.jsdelivr.net/npm/@scalar/api-reference": "scalar-api-reference.js",
 }
 
+client = httpx2.AsyncClient(
+    headers={
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+    }
+)
+
 
 async def download(url: str, root: Path, filename: str) -> None:
-    async with httpx.AsyncClient(
-        headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
-        }
-    ) as client:
-        resp = await client.get(url, follow_redirects=True)
+    resp = await client.get(url, follow_redirects=True)
     resp.raise_for_status()
     file = root.joinpath(filename)
     await asyncio.to_thread(file.write_bytes, resp.content)
