@@ -33,7 +33,7 @@ def fastapi_app():
     @app.get("/scalar", include_in_schema=False)
     async def scalar():
         html = get_scalar_html(
-            openapi_url=app.openapi_url or "/openapi.json",
+            url=app.openapi_url or "/openapi.json",
             title="API Documentation Scalar",
         )
         return HTMLResponse(content=html)
@@ -90,10 +90,10 @@ def fastapi_app_embed():
     @app.get("/scalar", include_in_schema=False)
     async def scalar():
         html = get_scalar_html(
-            openapi_url=app.openapi_url or "/openapi.json",
+            url=app.openapi_url or "/openapi.json",
             title="API Documentation Scalar",
             scalar_js_url="/static/scalar-api-reference.js",
-            scalar_favicon_url="/static/favicon.ico",
+            favicon="/static/favicon.ico",
         )
         return HTMLResponse(content=html)
 
@@ -129,10 +129,10 @@ def fastapi_app_staticfiles():
     @app.get("/scalar", include_in_schema=False)
     async def scalar():
         html = get_scalar_html(
-            openapi_url=app.openapi_url or "/openapi.json",
+            url=app.openapi_url or "/openapi.json",
             title="API Documentation Scalar",
             scalar_js_url="/static/scalar-api-reference.js",
-            scalar_favicon_url="/static/favicon.ico",
+            favicon="/static/favicon.ico",
         )
         return HTMLResponse(content=html)
 
@@ -157,7 +157,6 @@ def test_fastapi():
     assert response.status_code == 200
     assert "API Documentation" in response.text
     assert "api-reference" in response.text
-    assert "favicon.ico" in response.text or "favicon.svg" in response.text
 
 
 @pytest.mark.parametrize(

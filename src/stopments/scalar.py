@@ -2,8 +2,16 @@ from __future__ import annotations
 
 import json
 from enum import Enum
+from typing import Any
+
+from .conv import to_camel
 
 API_REFERENCE = "scalar-api-reference.js"
+
+
+class Layout(Enum):
+    MODERN = "modern"
+    CLASSIC = "classic"
 
 
 class SearchHotKey(Enum):
@@ -35,7 +43,7 @@ class SearchHotKey(Enum):
     Z = "z"
 
 
-class ThemeId(Enum):
+class Theme(Enum):
     ALTERNATE = "alternate"
     DEFAULT = "default"
     MOON = "moon"
@@ -50,120 +58,129 @@ class ThemeId(Enum):
     NONE = "none"
 
 
-class Integration(Enum):
-    ADONISJS = "adonisjs"
-    DOCUSAURUS = "docusaurus"
-    DOTNET = "dotnet"
-    ELYSIAJS = "elysiajs"
-    EXPRESS = "express"
-    FASTAPI = "fastapi"
-    FASTIFY = "fastify"
-    GO = "go"
-    HONO = "hono"
-    HTML = "html"
-    LARAVEL = "laravel"
-    LITESTAR = "litestar"
-    NESTJS = "nestjs"
-    NEXTJS = "nextjs"
-    NITRO = "nitro"
-    NUXT = "nuxt"
-    PLATFORMATIC = "platformatic"
-    REACT = "react"
-    RUST = "rust"
-    SVELTE = "svelte"
-    VUE = "vue"
+class DocumentDownloadType(Enum):
+    JSON = "json"
+    YAML = "yaml"
+    BOTH = "both"
+    DIRECT = "direct"
+    NONE = "none"
 
 
-def dump(key: str, data: object) -> str:
-    if not isinstance(data, bool) and not data:
-        return ""
-    return f"{key}: {json.dumps(data)},"
+class OperationTitleSource(Enum):
+    SUMMARY = "summary"
+    PATH = "path"
+
+
+class OrderSchemaPropertiesBy(Enum):
+    ALPHA = "alpha"
+    PRESERVE = "preserve"
+
+
+class ShowDeveloperTools(Enum):
+    ALWAYS = "always"
+    LOCALHOST = "localhost"
+    NEVER = "never"
+
+
+class ForceDarkModeState(Enum):
+    DARK = "dark"
+    LIGHT = "light"
+
+
+_HTML_KEYS = {"title", "scalar_js_url", "overrides"}
+
+
+def _jsonable(value: Any) -> Any:
+    if isinstance(value, Enum):
+        return value.value
+    if isinstance(value, dict):
+        return {key: _jsonable(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_jsonable(item) for item in value]
+    return value
 
 
 def get_scalar_html(  # noqa: PLR0913
     *,
-    openapi_url: str,
-    title: str = "API Documentation",
+    title: str | None = None,
     scalar_js_url: str = "https://cdn.jsdelivr.net/npm/@scalar/api-reference",
-    scalar_proxy_url: str = "",
-    scalar_favicon_url: str = "https://docs.scalar.com/favicon.svg",
-    slug: str | None = None,
-    authentication: dict | None = None,
-    base_server_url: str = "",
-    hide_client_button: bool = False,
-    proxy_url: str = "",
-    search_hot_key: SearchHotKey = SearchHotKey.K,
-    servers: list[dict[str, str]] | None = None,
-    show_sidebar: bool = True,
-    theme: ThemeId = ThemeId.DEFAULT,
-    integration: Integration | None = None,
-    persist_auth: bool = False,
+    url: str | None = None,
+    favicon: str | None = None,
+    content: str | dict[str, Any] | None = None,
+    sources: list[dict[str, Any]] | None = None,
+    layout: Layout | None = None,
+    theme: Theme | None = None,
+    show_sidebar: bool | None = None,
+    hide_search: bool | None = None,
+    hide_models: bool | None = None,
+    hide_client_button: bool | None = None,
+    hide_test_request_button: bool | None = None,
+    hide_dark_mode_toggle: bool | None = None,
+    dark_mode: bool | None = None,
+    force_dark_mode_state: ForceDarkModeState | None = None,
+    document_download_type: DocumentDownloadType | None = None,
+    default_open_first_tag: bool | None = None,
+    default_open_all_tags: bool | None = None,
+    expand_all_model_sections: bool | None = None,
+    expand_all_responses: bool | None = None,
+    expand_all_schema_properties: bool | None = None,
+    order_required_properties_first: bool | None = None,
+    order_schema_properties_by: OrderSchemaPropertiesBy | None = None,
+    operation_title_source: OperationTitleSource | None = None,
+    show_operation_id: bool | None = None,
+    models_section_label: str | None = None,
+    proxy_url: str | None = None,
+    authentication: dict[str, Any] | None = None,
+    persist_auth: bool | None = None,
+    servers: list[dict[str, Any]] | None = None,
+    oauth2_redirect_uri: str | None = None,
+    default_http_client: dict[str, Any] | None = None,
+    meta_data: dict[str, Any] | None = None,
+    localization: dict[str, Any] | None = None,
+    path_routing: dict[str, Any] | None = None,
+    mcp: dict[str, Any] | None = None,
+    agent: dict[str, Any] | None = None,
+    custom_css: str | None = None,
+    hidden_clients: bool | list[str] | dict[str, Any] | None = None,
+    search_hot_key: SearchHotKey | None = None,
+    show_developer_tools: ShowDeveloperTools | None = None,
+    telemetry: bool | None = None,
+    with_default_fonts: bool | None = None,
+    overrides: dict[str, Any] | None = None,
 ) -> str:
     """
-    Generates HTML for Scalar API Reference based on OpenAPI specification.
+    Generate an HTML document that embeds the Scalar API Reference.
 
-    https://github.com/scalar/scalar/blob/main/packages/types/src/api-reference/api-reference-configuration.ts
-
-    Args:
-        openapi_url: URL to an OpenAPI/Swagger document
-        title: The title of the OpenAPI document.
-        scalar_js_url: URL to Scalar JavaScript library
-        scalar_proxy_url: Scalar proxy URL
-        scalar_favicon_url: Favicon URL
-        slug: The slug of the OpenAPI document used in the URL. If none is passed, the title will be used.
-        authentication: Prefill authentication
-        base_server_url: Base URL for the API server
-        hide_client_button: Whether to hide the client button
-        proxy_url: URL to a request proxy for the API client
-        search_hot_key: Key used with CTRL/CMD to open the search modal (defaults to 'k' e.g. CMD+k)
-        servers: List of OpenAPI server objects
-        show_sidebar: Whether to show the sidebar
-        theme:  A string to use one of the color presets
-        integration: Integration type identifier
-        persist_auth: Whether to persist auth to local storage
-
-    Returns:
-        HTML document displaying the Scalar API Reference
+    Configuration follows https://scalar.com/products/api-references/configuration
+    with Python snake_case argument names.
     """
-    servers = servers or []
-    authentication = authentication or {}
-    title = title or "API Documentation"
+    config = {
+        to_camel(key): _jsonable(value)
+        for key, value in locals().items()
+        if key not in _HTML_KEYS and value is not None
+    }
+
+    if overrides:
+        config.update(_jsonable(overrides))
 
     return f"""<!doctype html>
 <html>
   <head>
-    <title>{title}</title>
+    <title>{title or "Scalar"}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {f'<link rel="shortcut icon" href="{scalar_favicon_url}">' if scalar_favicon_url else ""}
+    <style>
+      body {{
+        margin: 0;
+        padding: 0;
+      }}
+    </style>
   </head>
   <body>
-    <script
-      id="api-reference"
-      data-url="{openapi_url}"
-      {f'data-proxy-url="{scalar_proxy_url}"' if scalar_proxy_url else ""}
-    >
-    </script>
-
-    <script>
-      var configuration = {{
-          {dump("slug", slug)}
-          {dump("authentication", authentication)}
-          {dump("baseServerUrl", base_server_url)}
-          {dump("hideClientButton", hide_client_button)}
-          {dump("proxyUrl", proxy_url)}
-          {dump("searchHotKey", search_hot_key.value)}
-          {dump("servers", servers)}
-          {dump("showSidebar", show_sidebar)}
-          {dump("theme", theme.value)}
-          {dump("_integration", integration.value if integration else None)}
-          {dump("persistAuth", persist_auth)}
-      }}
-
-      document.getElementById('api-reference').dataset.configuration =
-        JSON.stringify(configuration)
-    </script>
-
+    <div id="app"></div>
     <script src="{scalar_js_url}"></script>
+    <script>
+      Scalar.createApiReference("#app", {json.dumps(config)})
+    </script>
   </body>
 </html>"""
