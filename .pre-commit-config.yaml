@@ -16,18 +16,18 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/oxc-project/mirrors-oxfmt
-    rev: v0.61.0
+    rev: v0.71.0
     hooks:
       - id: oxfmt
         types_or: [json, markdown, yaml]
 
   - repo: https://github.com/tombi-toml/tombi-pre-commit
-    rev: v1.2.5
+    rev: v1.6.1
     hooks:
       - id: tombi-format
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.1
+    rev: v0.16.9
     hooks:
       - id: ruff-check
         args: [--fix]

@@ -30,6 +30,7 @@ from stopments import get_stoplight_elements_html
 
 app = FastAPI(docs_url=None, redoc_url=None)
 
+
 @app.get("/docs/", include_in_schema=False)
 async def docs():
     html = get_stoplight_elements_html(
@@ -50,6 +51,7 @@ from stopments import get_stoplight_elements_html
 
 app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(packages=[("stopments", "static")]))
+
 
 @app.get("/docs/", include_in_schema=False)
 async def docs():
